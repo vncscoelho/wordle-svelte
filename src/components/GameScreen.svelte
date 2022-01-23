@@ -2,11 +2,15 @@
 	import WordRow from './WordRow.svelte';
 	import { iterables, config } from '../stores/configuration';
 
+	const MAX_LETTERS = $config.LETTERS;
+
 	const rowsDataStorage = [...$iterables.ROWS].map(() => []);
 	let currentRow = 0;
 
+	$: isCurrentRowValid = rowsDataStorage[currentRow]?.length === MAX_LETTERS;
+
 	const addLetter = (currentLetters, letter) => {
-		if (currentLetters.length < $config.LETTERS) {
+		if (!isCurrentRowValid) {
 			rowsDataStorage[currentRow] = [...currentLetters, letter];
 		}
 	};
@@ -15,14 +19,26 @@
 		rowsDataStorage[currentRow] = currentLetters.slice(0, currentLetters.length - 1);
 	};
 
+	const submitRow = () => {
+		if (isCurrentRowValid) {
+			currentRow++;
+		}
+	};
+
 	const handleUserInput = ({ key }) => {
 		const isLetterGuess = (character) => character.match(/^[A-Za-z]$/);
 		const currentData = rowsDataStorage[currentRow];
+
+		if (currentRow === MAX_LETTERS) {
+			return;
+		}
 
 		if (isLetterGuess(key)) {
 			addLetter(currentData, key);
 		} else if (key === 'Backspace') {
 			removeLetter(currentData);
+		} else if (key === 'Enter') {
+			submitRow();
 		}
 	};
 </script>
