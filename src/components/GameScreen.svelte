@@ -1,25 +1,28 @@
 <script>
 	import WordRow from './WordRow.svelte';
-	import { iterables } from '../stores/configs';
+	import { iterables, config } from '../stores/configuration';
 
-	let userInput = [];
+	const rowsDataStorage = [...$iterables.ROWS].map(() => []);
+	let currentRow = 0;
 
-	const addLetter = (letter) => {
-		if (userInput.length < 5) {
-			userInput = [...userInput, letter];
+	const addLetter = (currentLetters, letter) => {
+		if (currentLetters.length < $config.LETTERS) {
+			rowsDataStorage[currentRow] = [...currentLetters, letter];
 		}
 	};
-	const removeLetter = () => {
-		userInput = userInput.slice(0, userInput.length - 1);
+
+	const removeLetter = (currentLetters) => {
+		rowsDataStorage[currentRow] = currentLetters.slice(0, currentLetters.length - 1);
 	};
 
 	const handleUserInput = ({ key }) => {
 		const isLetterGuess = (character) => character.match(/^[A-Za-z]$/);
+		const currentData = rowsDataStorage[currentRow];
 
 		if (isLetterGuess(key)) {
-			addLetter(key);
+			addLetter(currentData, key);
 		} else if (key === 'Backspace') {
-			removeLetter();
+			removeLetter(currentData);
 		}
 	};
 </script>
@@ -28,7 +31,7 @@
 <svelte:window on:keydown={handleUserInput} />
 
 <div class="game-screen">
-	{#each $iterables.ROWS as row}
-		<WordRow currentGuess={userInput} />
+	{#each $iterables.ROWS as _, rowIndex}
+		<WordRow currentGuess={rowsDataStorage[rowIndex]} showResults={rowIndex < currentRow} />
 	{/each}
 </div>

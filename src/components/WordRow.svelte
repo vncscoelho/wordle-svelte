@@ -1,6 +1,6 @@
 <script>
 	import WordLetter from './WordLetter.svelte';
-	import { iterables } from '../stores/configs';
+	import { iterables } from '../stores/configuration';
 
 	export let currentGuess = [];
 </script>

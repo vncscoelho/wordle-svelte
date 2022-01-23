@@ -1,9 +1,9 @@
 <script>
-	export let letter = '';
+	export let letter;
 </script>
 
 <div class="word-letter">
-	{letter}
+	{letter || ''}
 </div>
 
 <style>
