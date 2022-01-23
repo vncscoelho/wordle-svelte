@@ -1,10 +1,13 @@
 <script>
 	import WordLetter from './WordLetter.svelte';
+	import { iterables } from '../stores/configs';
+
+	export let currentGuess = [];
 </script>
 
 <div class="word-row">
-	{#each 'wordle' as letter}
-		<WordLetter />
+	{#each $iterables.LETTERS as _, index}
+		<WordLetter letter={currentGuess[index]} />
 	{/each}
 </div>
 

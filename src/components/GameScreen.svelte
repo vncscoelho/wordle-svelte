@@ -1,5 +1,6 @@
 <script>
 	import WordRow from './WordRow.svelte';
+	import { iterables } from '../stores/configs';
 
 	let userInput = [];
 
@@ -24,10 +25,10 @@
 </script>
 
 <!-- Input Listener -->
-<svelte:window on:keydown={handleUserInput} on:key />
+<svelte:window on:keydown={handleUserInput} />
 
 <div class="game-screen">
-	{#each new Array(5) as row}
-		<WordRow />
+	{#each $iterables.ROWS as row}
+		<WordRow currentGuess={userInput} />
 	{/each}
 </div>
