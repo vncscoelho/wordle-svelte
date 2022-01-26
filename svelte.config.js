@@ -1,3 +1,4 @@
+import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-auto';
 import path from 'path';
 
@@ -11,9 +12,25 @@ const config = {
 				alias: {
 					'@': path.resolve('./src')
 				}
+			},
+
+			css: {
+				preprocessorOptions: {
+					scss: {
+						additionalData: '@use "src/styles/variables.scss" as *;'
+					}
+				}
 			}
 		}
-	}
+	},
+
+	preprocess: [
+		preprocess({
+			scss: {
+				prependData: '@use "src/styles/variables.scss" as *;'
+			}
+		})
+	]
 };
 
 export default config;
