@@ -6,6 +6,8 @@
 	import { checkExistingWord } from '../services/words';
 	import ErrorPopup from './ErrorPopup.svelte';
 	import GameOver from './GameOver.svelte';
+	import Keyboard from './Keyboard.svelte';
+	import { ENTER, BACKSPACE } from './Keyboard.svelte';
 
 	const MAX_LETTERS = $settings.LETTERS;
 
@@ -68,6 +70,7 @@
 
 	/* Keyboard input handling */
 	const handleUserInput = ({ key }) => {
+		console.log(key);
 		const isLetterGuess = (character) => character.match(/^[A-Za-z]$/);
 		const currentData = rowsDataStorage[currentRow];
 
@@ -77,9 +80,9 @@
 
 		if (isLetterGuess(key)) {
 			addLetter(currentData, key);
-		} else if (key === 'Backspace') {
+		} else if (key === BACKSPACE) {
 			removeLetter(currentData);
-		} else if (key === 'Enter') {
+		} else if (key === ENTER) {
 			submitRow();
 		}
 	};
@@ -96,6 +99,7 @@
 			on:success={gameOver}
 		/>
 	{/each}
+	<Keyboard on:click={({ detail }) => handleUserInput({ key: detail })} />
 </div>
 
 <ErrorPopup show={showError} currentGuess={invalidWord} />
