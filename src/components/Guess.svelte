@@ -176,11 +176,10 @@
 		}
 
 		&__item {
-			padding: 8px;
+			display: flex;
+			flex-direction: column;
 			text-align: center;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			padding: 8px 8px 0;
 
 			.label,
 			small {
@@ -190,6 +189,9 @@
 
 			.value {
 				font-size: 18px;
+				max-height: 30px;
+				overflow: hidden;
+				margin: auto 0;
 			}
 
 			&:nth-of-type(2n) {
@@ -203,10 +205,17 @@
 			&.name {
 				grid-column: span 2;
 				border-bottom: $useBorder;
+
+				.value {
+					margin: 0;
+				}
 			}
 
-			&.club strong {
-				font-size: 0.8em;
+			&.club,
+			&.seasons {
+				strong {
+					font-size: 0.8em;
+				}
 			}
 
 			&--is-hit {

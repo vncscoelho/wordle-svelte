@@ -30,13 +30,11 @@ export class Player {
 	}
 
 	get seasons() {
-		if (this.years.length > 1) {
-			const [max, min] = [Math.max(...this.years), Math.min(...this.years)];
-
-			return `${min}-${max}`;
+		if (this.years?.length) {
+			return this.years.map((year) => String(year).substr(2));
 		}
 
-		return this.years[0] || '';
+		return String(this.years).substr(2);
 	}
 
 	get club() {
