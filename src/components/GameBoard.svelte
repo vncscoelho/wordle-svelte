@@ -22,7 +22,7 @@
 
 	let showToaster = false;
 
-	$: hasGuessesLeft = $currentRow < $rows;
+	$: hasGuessesLeft = $rows >= $currentRow + 1;
 
 	function registerGuess({ detail }) {
 		if (hasGuessesLeft) {
@@ -81,7 +81,7 @@
 		{#if $isGameOver === false}
 			<PlayerSearch on:select={registerGuess} />
 		{:else}
-			<CurtainToaster show={showToaster} {...toasters[$isGameOver === true ? 'success' : 'fail']} />
+			<CurtainToaster show={showToaster} {...toasters[hasGuessesLeft ? 'success' : 'fail']} />
 			<ShareButton />
 		{/if}
 	</div>

@@ -7,6 +7,7 @@
 	export let message = 'Parabéns!';
 	export let emoji = `🏆`;
 	export let subtitle = 'Você acertou o jogador do dia!';
+	export let showConfetti = false;
 
 	const animate = (delay = 0, x = 0) => ({
 		delay,
@@ -26,7 +27,9 @@
 			<span>{emoji}</span>
 			<h3>{message}</h3>
 			<p>{subtitle}</p>
-			<ConffetiSvg />
+			{#if showConfetti}
+				<ConffetiSvg />
+			{/if}
 		</div>
 	</div>
 {/if}
