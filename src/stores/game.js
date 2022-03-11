@@ -19,7 +19,7 @@ export function addGuess(id) {
 		const player = getPlayerById(id);
 		const length = Object.entries($guesses).length;
 
-		$guesses[length] = player;
+		$guesses[length + 1] = player;
 
 		setGuesses($guesses);
 
@@ -31,10 +31,7 @@ export const currentScore = derived([guesses, playerOfTheDay], ([$guesses, $potd
 	return Object.values($guesses).map((guess) => guess.compare($potd));
 });
 
-export const currentRow = derived(
-	guesses,
-	($guesses) => Object.values($guesses).filter((v) => v).length
-);
+export const currentRow = derived(guesses, ($guesses) => Object.values($guesses).length);
 
 /* Helper: Objects to Array */
 export const iterables = derived([guesses, rows], ([$guesses, $rows]) => ({

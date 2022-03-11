@@ -10,12 +10,14 @@
 		return stats;
 	}, {});
 
-	$: resultsArray = Object.values($userStore);
+	$: resultsArray = Object.values($userStore).map(({ guesses }) => guesses);
 	$: played = resultsArray.length;
 	$: wins = resultsArray.map(({ result }) => result);
 	$: stats = Object.entries(
 		wins.reduce((all, tier) => {
-			all[tier]++;
+			if (tier) {
+				all[tier]++;
+			}
 
 			return all;
 		}, defaultStats)
