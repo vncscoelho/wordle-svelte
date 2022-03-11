@@ -5,7 +5,7 @@
 	const tips = [
 		{
 			key: 'seasons',
-			label: 'Elenco'
+			label: 'Elencos'
 		},
 		{
 			key: 'nationality',
@@ -51,7 +51,8 @@
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 8px 0;
 		width: 100%;
-		background: #ededed;
+		background: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(1px);
 		border: $useBorder;
 		border-bottom: 0;
 		padding: 16px 16px 20px;

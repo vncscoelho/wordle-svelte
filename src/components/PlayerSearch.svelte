@@ -1,7 +1,7 @@
 <script>
 	import { searchName } from 'src/services/names.js';
 	import { isGameOver } from 'src/stores/game';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import OvalButton from './OvalButton.svelte';
 	import Tips from './Tips.svelte';
@@ -14,6 +14,8 @@
 
 	$: results = searchName(inputValue);
 	$: $isGameOver && toggleTips(false);
+
+	onMount(() => toggleTips(true));
 
 	function handleSelect(id) {
 		if (id) {

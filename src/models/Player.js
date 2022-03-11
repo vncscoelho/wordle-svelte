@@ -51,8 +51,8 @@ export class Player {
 		return names.map((name) => name[0]).join(' ');
 	}
 
-	compare(id) {
-		const player = getPlayerById(id);
+	compare(player) {
+		console.log(this.nationality, player.nationality);
 
 		return {
 			seasons: player.years.some((year) => this.years.includes(year)),

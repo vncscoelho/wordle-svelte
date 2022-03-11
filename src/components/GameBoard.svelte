@@ -21,12 +21,16 @@
 	*/
 
 	let showToaster = false;
+	let foundCorrectAnswer = false;
 
-	$: hasGuessesLeft = $rows >= $currentRow + 1;
+	$: hasGuessesLeft = $rows >= $currentRow;
 
 	function registerGuess({ detail }) {
 		if (hasGuessesLeft) {
 			addGuess(detail);
+			if (detail === $playerOfTheDay.id) {
+				foundCorrectAnswer = true;
+			}
 			if ($isGameOver) {
 				showToaster = true;
 			}
@@ -81,7 +85,7 @@
 		{#if $isGameOver === false}
 			<PlayerSearch on:select={registerGuess} />
 		{:else}
-			<CurtainToaster show={showToaster} {...toasters[hasGuessesLeft ? 'success' : 'fail']} />
+			<CurtainToaster show={showToaster} {...toasters[foundCorrectAnswer ? 'success' : 'fail']} />
 			<ShareButton />
 		{/if}
 	</div>
