@@ -24,7 +24,7 @@
 			return emptyRow;
 		});
 
-		await navigator.clipboard.writeText(`Joguei gremio.ooo\n\n${results.join`\n`}`);
+		await navigator.clipboard.writeText(`Joguei gremi.ooo\n\n${results.join`\n`}`);
 
 		displayConfirmation();
 	}
