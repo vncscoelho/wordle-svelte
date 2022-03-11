@@ -93,7 +93,7 @@
 		&::after {
 			content: '';
 			position: absolute;
-			background: url('potd-bg.png');
+			background: url('/potd-bg.png');
 			top: 0;
 			left: 0;
 			width: 100%;
