@@ -1,0 +1,13 @@
+$black: #1f1a17;
+$primary: #5f5bff;
+$blue: #0d80bf;
+$white: #fff;
+$bronze: #937550;
+$silver: #abaaaa;
+$gold: #f8c300;
+
+@mixin isBox() {
+	box-shadow: 2px 2px 0 0 $black;
+}
+
+$useBorder: 3px solid $black;

@@ -1,6 +1,7 @@
 {
 	"name": "wordle-svelte",
 	"version": "0.0.1",
+	"license": "MPL-2.0",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -17,9 +18,12 @@
 		"eslint-plugin-svelte3": "^3.2.1",
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
-		"svelte": "^3.44.0",
 		"sass": "^1.46.0",
+		"svelte": "^3.44.0",
 		"svelte-preprocess": "^4.10.1"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"normalize.css": "^8.0.1"
+	}
 }

@@ -6,11 +6,10 @@ import path from 'path';
 const config = {
 	kit: {
 		adapter: adapter(),
-		target: '#svelte',
 		vite: {
 			resolve: {
 				alias: {
-					'@': path.resolve('./src')
+					src: path.resolve('./src')
 				}
 			},
 
