@@ -101,7 +101,7 @@
 			flex: 1;
 			display: flex;
 			align-items: center;
-			margin-top: -75px;
+			margin-top: -83px;
 		}
 
 		&__guesses {

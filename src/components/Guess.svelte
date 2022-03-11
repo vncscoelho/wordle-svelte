@@ -14,6 +14,10 @@
 	$: isAnswer = p.id === $playerOfTheDay.id;
 
 	$: footerString = isAnswer ? 'JOGADOR DO DIA' : 'GRÊMIO';
+
+	/* function getImage(id) {
+		return new URL(`../../static/players/${id}.png`, import.meta.url).href;
+	} */
 </script>
 
 <div
@@ -113,7 +117,7 @@
 			}
 
 			&.back {
-				background: url('card-bg.svg') no-repeat center/contain $silver;
+				background: url('/card-bg.svg') no-repeat center/contain $silver;
 				transform: rotateY(180deg);
 			}
 		}
@@ -147,7 +151,7 @@
 		&__photo {
 			display: flex;
 			height: 200px;
-			background: url('card-bg.svg') no-repeat center/cover;
+			background: url('/card-bg.svg') no-repeat center/cover;
 			overflow: hidden;
 			border-radius: 3px;
 

@@ -12,24 +12,18 @@ const config = {
 					src: path.resolve('./src')
 				}
 			},
-
 			css: {
 				preprocessorOptions: {
 					scss: {
-						additionalData: '@use "src/styles/variables.scss" as *;'
+						additionalData: `@use "src/styles/variables.scss" as *;`
 					}
 				}
 			}
 		}
 	},
-
-	preprocess: [
-		preprocess({
-			scss: {
-				prependData: '@use "src/styles/variables.scss" as *;'
-			}
-		})
-	]
+	experimental: {
+		useVitePreprocess: true
+	}
 };
 
 export default config;
