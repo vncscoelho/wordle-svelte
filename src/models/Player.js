@@ -31,7 +31,7 @@ export class Player {
 
 	get seasons() {
 		if (this.years?.length) {
-			return this.years.map((year) => String(year).substr(2));
+			return this.years.map((year) => String(year).substr(2)).join(', ');
 		}
 
 		return String(this.years).substr(2);
