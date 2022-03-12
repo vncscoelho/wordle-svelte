@@ -10,7 +10,7 @@
 		return stats;
 	}, {});
 
-	$: resultsArray = Object.values($userStore).map(({ guesses }) => guesses);
+	$: resultsArray = Object.values($userStore);
 	$: played = resultsArray.length;
 	$: wins = resultsArray.map(({ result }) => result);
 	$: stats = Object.entries(
