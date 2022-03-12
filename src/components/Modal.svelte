@@ -43,6 +43,47 @@
 			:global(h3:nth-of-type(1)) {
 				margin-top: 0;
 			}
+
+			:global(ul) {
+				counter-reset: help;
+			}
+
+			:global(ul li) {
+				text-align: left;
+				display: grid;
+				align-items: center;
+				justify-content: start;
+				grid-template: 'a b' / 32px auto;
+				grid-gap: 0 8px;
+				margin-bottom: 12px;
+
+				&::before {
+					display: flex;
+					flex: 0 0 32px;
+					justify-content: center;
+					align-items: center;
+					grid-area: a;
+					transform: rotate(-15deg);
+					height: 16px;
+					content: '';
+					background: #fff;
+					border: $useBorder;
+					border-radius: 50%;
+					color: $black;
+				}
+
+				&::after {
+					font-weight: 800;
+					position: relative;
+					z-index: 1;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					grid-area: a;
+					content: counter(help);
+					counter-increment: help;
+				}
+			}
 		}
 
 		:global(.oval-button) {

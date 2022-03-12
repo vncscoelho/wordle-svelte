@@ -52,8 +52,6 @@ export class Player {
 	}
 
 	compare(player) {
-		console.log(this.nationality, player.nationality);
-
 		return {
 			seasons: player.years.some((year) => this.years.includes(year)),
 			position: this.position === player.position,
