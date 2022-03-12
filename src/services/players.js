@@ -5,7 +5,7 @@ export const getPlayerOfTheDay = () => {
 	const rng = new RNG();
 	const number = rng.nextRange(0, 468);
 	const randomPlayer = Object.keys(playersDb)[number];
-	return getPlayerById(52402);
+	return getPlayerById(randomPlayer);
 };
 
 export const getPlayerById = (id) => {
