@@ -13,20 +13,42 @@
 
 	let showConfirmation = false;
 
-	async function copyResults() {
+	$: results = calcResults($currentScore);
+	$: shareText = `Joguei gremi.ooo\n\n${results.join`\n`}\n\n#gremio`;
+
+	function calcResults(currentScore) {
 		const emptyRow = $iterables.ROWS.map(() => `⬛`).join``;
-		const score = Object.values($currentScore);
-		const results = $iterables.ROWS.map((_, index) => {
+		const score = Object.values(currentScore);
+
+		return $iterables.ROWS.map((_, index) => {
 			if (score[index]) {
 				return Object.values(score[index]).map((item) => (item ? `🟦` : `⬜`)).join``;
 			}
 
 			return emptyRow;
 		});
+	}
 
-		await navigator.clipboard.writeText(`Joguei gremi.ooo\n\n${results.join`\n`}`);
+	async function handleShare() {
+		if (navigator.share) {
+			await toggleShare();
+		} else {
+			await copyResults();
+		}
 
 		displayConfirmation();
+	}
+
+	async function toggleShare() {
+		return navigator.share({
+			title: document.title,
+			text: shareText,
+			url: window.location.href
+		});
+	}
+
+	function copyResults() {
+		return navigator.clipboard.writeText(shareText);
 	}
 
 	function displayConfirmation() {
@@ -36,7 +58,7 @@
 </script>
 
 <div class="share-button">
-	<button class="share-button--button" on:click={copyResults}> Compartilhar </button>
+	<button class="share-button--button" on:click={handleShare}> Compartilhar </button>
 	{#if showConfirmation}
 		<div class="share-button--confirmation" in:fly={{ y: 100 }} out:fly={{ y: -100 }}>
 			Resultados copiados!
