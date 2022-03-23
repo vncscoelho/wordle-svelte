@@ -27,13 +27,17 @@ export function setResult(result) {
 }
 
 export function setGuesses(guesses) {
-	userStore.update((store) => ({
-		...store,
-		[today]: {
-			...store[today],
-			guesses: parseGuessesIds(guesses)
-		}
-	}));
+	try {
+		userStore.update((store) => ({
+			...store,
+			[today]: {
+				...store[today],
+				guesses: parseGuessesIds(guesses)
+			}
+		}));
+	} catch (e) {
+		console.error('Error setting guess: ', e);
+	}
 }
 
 function getUserData() {

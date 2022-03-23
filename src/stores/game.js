@@ -16,14 +16,18 @@ export const guesses = writable({ ...getUserGuesses() });
 
 export function addGuess(id) {
 	guesses.update(($guesses) => {
-		const player = getPlayerById(id);
-		const length = Object.entries($guesses).length;
+		try {
+			const player = getPlayerById(id);
+			const length = Object.entries($guesses).length;
 
-		$guesses[length + 1] = player;
+			$guesses[length + 1] = player;
 
-		setGuesses($guesses);
+			setGuesses($guesses);
 
-		return $guesses;
+			return $guesses;
+		} catch (e) {
+			console.error('Error adding guess: ', e);
+		}
 	});
 }
 
