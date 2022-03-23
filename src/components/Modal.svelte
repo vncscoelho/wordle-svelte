@@ -11,7 +11,9 @@
 		<div class="container">
 			<div class="modal__content" transition:fly={{ y: -500 }}>
 				<OvalButton on:click={() => (show = false)}>✖</OvalButton>
-				<slot />
+				<div class="modal__window">
+					<slot />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -84,6 +86,11 @@
 					counter-increment: help;
 				}
 			}
+		}
+
+		&__window {
+			overflow: auto;
+			max-height: 80vh;
 		}
 
 		:global(.oval-button) {
